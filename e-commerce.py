@@ -227,12 +227,14 @@ def unsafe_load():
     return jsonify({"message": "Object loaded successfully!", "object_details": str(obj)})
 
 # monish vhai
-# @app.route('/process-payment', methods=['POST'])
-# def process_payment():
-#     card_number = request.json.get('card_number')
-#     amount = request.json.get('amount')
-#     result = process_credit_card(card_number, amount)
-#     return jsonify(result)
+# bale bale oh shawa shwaa
+# abhishek bisis
+@app.route('/process-payment', methods=['POST'])
+def process_payment():
+    card_number = request.json.get('card_number')
+    amount = request.json.get('amount')
+    result = process_credit_card(card_number, amount)
+    return jsonify(result)
 
 
 import requests
