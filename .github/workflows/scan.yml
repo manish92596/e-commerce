@@ -33,18 +33,18 @@ jobs:
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_PORT: ${{ secrets.DB_PORT }}
         run: |
-          python -c "
-import requests
-url = 'http://localhost:5001/scan'
-data = {
-    'file_path': 'e-commerce.py',
-    'db_host': '${{ secrets.DB_HOST }}',
-    'db_user': '${{ secrets.DB_USER }}',
-    'db_password': '${{ secrets.DB_PASSWORD }}',
-    'db_name': '${{ secrets.DB_NAME }}',
-    'db_port': '${{ secrets.DB_PORT }}'
-}
-response = requests.post(url, json=data)
-print('Status Code:', response.status_code)
-print('Response Text:', response.text)
-"
+          python - <<'EOF'
+          import requests
+          url = 'http://localhost:5001/scan'
+          data = {
+              'file_path': 'e-commerce.py',
+              'db_host': '${{ secrets.DB_HOST }}',
+              'db_user': '${{ secrets.DB_USER }}',
+              'db_password': '${{ secrets.DB_PASSWORD }}',
+              'db_name': '${{ secrets.DB_NAME }}',
+              'db_port': '${{ secrets.DB_PORT }}'
+          }
+          response = requests.post(url, json=data)
+          print('Status Code:', response.status_code)
+          print('Response Text:', response.text)
+          EOF
