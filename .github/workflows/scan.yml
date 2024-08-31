@@ -1,3 +1,4 @@
+
 name: Scan on Commit
 
 on:
@@ -23,9 +24,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests watchdog
+          pip install requests
 
-      - name: Run Scan Script
+      - name: Run Scan Script with curl
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_USER: ${{ secrets.DB_USER }}
@@ -33,18 +34,13 @@ jobs:
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_PORT: ${{ secrets.DB_PORT }}
         run: |
-          python - <<'EOF'
-          import requests
-          url = 'https://scanner-saom.onrender.com/scan'
-          data = {
-              'file_path': 'e-commerce.py',
-              'db_host': '${{ secrets.DB_HOST }}',
-              'db_user': '${{ secrets.DB_USER }}',
-              'db_password': '${{ secrets.DB_PASSWORD }}',
-              'db_name': '${{ secrets.DB_NAME }}',
-              'db_port': '${{ secrets.DB_PORT }}'
-          }
-          response = requests.post(url, json=data)
-          print('Status Code:', response.status_code)
-          print('Response Text:', response.text)
-          EOF
+          curl -X POST https://scanner-saom.onrender.com/scan \
+          -H "Content-Type: application/json" \
+          -d '{
+            "file_path": "e-commerce.py",
+            "db_host": "'"${{ secrets.DB_HOST }}"'",
+            "db_user": "'"${{ secrets.DB_USER }}"'",
+            "db_password": "'"${{ secrets.DB_PASSWORD }}"'",
+            "db_name": "'"${{ secrets.DB_NAME }}"'",
+            "db_port": "'"${{ secrets.DB_PORT }}"'"
+          }'
