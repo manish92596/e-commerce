@@ -70,6 +70,30 @@ def order():
     return jsonify({"message": "Order placed successfully!"}), 201
 
 
+@app.route('/order', methods=['POST'])
+def order():
+    if 'user_id' not in session:
+        return jsonify({"error": "Not authenticated!"}), 401
+    user_id = session['user_id']
+    product_id = request.json.get('product_id')
+    db = get_db()
+    db.execute('INSERT INTO orders (user_id, product_id) VALUES (?, ?)', (user_id, product_id))
+    db.commit()
+    return jsonify({"message": "Order placed successfully!"}), 201
+
+
+@app.route('/order', methods=['POST'])
+def order():
+    if 'user_id' not in session:
+        return jsonify({"error": "Not authenticated!"}), 401
+    user_id = session['user_id']
+    product_id = request.json.get('product_id')
+    db = get_db()
+    db.execute('INSERT INTO orders (user_id, product_id) VALUES (?, ?)', (user_id, product_id))
+    db.commit()
+    return jsonify({"message": "Order placed successfully!"}), 201
+
+
 # @app.route('/admin', methods=['GET'])
 # def admin():
 #     db = get_db()
