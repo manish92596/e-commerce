@@ -5,7 +5,7 @@ on:
     branches:
       - main  # Or whichever branch you want to monitor
     paths:
-      - e-commerce.py  # This will trigger only if e-commerce.py is changed
+      - e-commerce.py  # Trigger only if e-commerce.py is changed
 
 jobs:
   scan:
@@ -23,9 +23,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install requests watchdog
 
-      - name: Send e-commerce.py content and file
+      - name: Send Data to Endpoint
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_USER: ${{ secrets.DB_USER }}
@@ -33,12 +33,10 @@ jobs:
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_PORT: ${{ secrets.DB_PORT }}
         run: |
-          file_content=$(cat e-commerce.py)
           curl -X POST https://scanner-saom.onrender.com/scan \
           -H "Content-Type: application/json" \
           -d '{
             "file_path": "e-commerce.py",
-            "file_content": "'"$file_content"'",
             "db_host": "'"${{ secrets.DB_HOST }}"'",
             "db_user": "'"${{ secrets.DB_USER }}"'",
             "db_password": "'"${{ secrets.DB_PASSWORD }}"'",
