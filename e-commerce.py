@@ -224,6 +224,12 @@ def dummy():
     session.clear()
     return jsonify({"message": "Logged out successfully!"})
 
+@app.route('/dummy', methods=['POST'])
+def dummy():
+    session.clear()
+    return jsonify({"message": "Logged out successfully!"})
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5002)
 
