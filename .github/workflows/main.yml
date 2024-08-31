@@ -22,7 +22,7 @@ jobs:
           WEBHOOK_URL: https://scanner-saom.onrender.com/scan  # Replace with your actual webhook URL
         run: |
           for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
-            content=$(cat $file)
+            content=$(cat "$file")
             curl -X POST $WEBHOOK_URL \
               -H "Content-Type: application/json" \
               -d "{\"file_path\": \"$file\", \"file_content\": \"$content\"}"
