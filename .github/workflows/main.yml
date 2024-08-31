@@ -1,0 +1,29 @@
+name: Send File Content on Push
+
+on:
+  push:
+    branches:
+      - main  # Change this to your desired branch
+
+jobs:
+  send_file_content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Send Modified File Content
+        env:
+          WEBHOOK_URL: https://scanner-saom.onrender.com/scan  # Replace with your actual webhook URL
+        run: |
+          for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
+            content=$(cat $file)
+            curl -X POST $WEBHOOK_URL \
+              -H "Content-Type: application/json" \
+              -d "{\"file_path\": \"$file\", \"file_content\": \"$content\"}"
+          done
