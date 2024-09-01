@@ -1,4 +1,25 @@
 
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    username = request.json.get('username')
+    password = request.json.get('password')
+    db = get_db()
+    db.execute('INSERT INTO users (username, password, role) VALUES (?, ?, ?)', (username, password, 'user'))
+    db.commit()
+    return jsonify({"message": "User created successfully!"}), 201
+
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    username = request.json.get('username')
+    password = request.json.get('password')
+    db = get_db()
+    db.execute('INSERT INTO users (username, password, role) VALUES (?, ?, ?)', (username, password, 'user'))
+    db.commit()
+    return jsonify({"message": "User created successfully!"}), 201
+
+
 @app.route('/login', methods=['POST'])
 def login():
     username = request.json.get('username')
