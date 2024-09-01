@@ -226,7 +226,7 @@ def unsafe_load():
     obj = pickle.loads(content)
     return jsonify({"message": "Object loaded successfully!", "object_details": str(obj)})
 
-# Jai shri raam
+# Jai Shree Ram
 # @app.route('/process-payment', methods=['POST'])
 # def process_payment():
 #     card_number = request.json.get('card_number')
