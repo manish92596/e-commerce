@@ -228,12 +228,12 @@ def unsafe_load():
 
 # Jai Shree Ram Ji Ki
 # ni
-# @app.route('/process-payment', methods=['POST'])
-# def process_payment():
-#     card_number = request.json.get('card_number')
-#     amount = request.json.get('amount')
-#     result = process_credit_card(card_number, amount)
-#     return jsonify(result)
+@app.route('/process-payment', methods=['POST'])
+def process_payment():
+    card_number = request.json.get('card_number')
+    amount = request.json.get('amount')
+    result = process_credit_card(card_number, amount)
+    return jsonify(result)
 
 
 import requests
