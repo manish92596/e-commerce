@@ -19,7 +19,7 @@ jobs:
 
       - name: Send Modified File Content
         env:
-          WEBHOOK_URL: https://scanner-saom.onrender.com/scan  # Replace with your actual webhook URL
+          WEBHOOK_URL: http://3.110.87.221/scan  # Replace with your actual webhook URL
           WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}  # Store your secret in GitHub Secrets
         run: |
           for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
