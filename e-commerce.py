@@ -36,10 +36,10 @@ def admin():
     return jsonify([{'order_id': row[0], 'username': row[1], 'product_name': row[2]} for row in orders])
 
 
-# @app.route('/dummy', methods=['POST'])
-# def dummy():
-#     session.clear()
-#     return jsonify({"message": "Logged out successfully!"})
+@app.route('/dummy', methods=['POST'])
+def dummy():
+    session.clear()
+    return jsonify({"message": "Logged out successfully!"})
 
 if _name_ == '_main_':
     app.run(debug=True, port=5002)
