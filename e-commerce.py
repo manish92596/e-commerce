@@ -117,18 +117,18 @@ def order():
 #     return jsonify([{'order_id': row[0], 'username': row[1], 'product_name': row[2]} for row in orders])
 
 
-@app.route('/search', methods=['GET'])
-def search():
-    query = request.args.get('q', '')
-    db = get_db()
-    cursor = db.cursor()
+# @app.route('/search', methods=['GET'])
+# def search():
+#     query = request.args.get('q', '')
+#     db = get_db()
+#     cursor = db.cursor()
 
-    # Vulnerable code: directly injecting the user input into the SQL query
-    sql_query = f"SELECT * FROM products WHERE name LIKE '%{query}%'"
-    cursor.execute(sql_query)
+#     # Vulnerable code: directly injecting the user input into the SQL query
+#     sql_query = f"SELECT * FROM products WHERE name LIKE '%{query}%'"
+#     cursor.execute(sql_query)
 
-    results = cursor.fetchall()
-    return jsonify(results)
+#     results = cursor.fetchall()
+#     return jsonify(results)
 
 
 @app.route('/search', methods=['GET'])
