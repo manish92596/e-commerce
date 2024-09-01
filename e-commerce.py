@@ -1,7 +1,3 @@
-# 
-def process_credit_card(card_number, amount):
-    print(f"Processing payment:\nCard Number: {card_number}\nAmount: {amount}")
-    return {"status": "success", "message": "Payment processed successfully"}
 
 def get_db():
     if 'db' not in g:
