@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = 'super_secure_secret_key'
 
 DATABASE = ':memory:'
-
+# ok
 # def process_credit_card(card_number, amount):
 #     print(f"Processing payment:\nCard Number: {card_number}\nAmount: {amount}")
 #     return {"status": "success", "message": "Payment processed successfully"}
