@@ -15,10 +15,10 @@ app.secret_key = 'super_secure_secret_key'
 #     except Exception as e:
 #         return str(e), 500
     
-@app.route('/dummy', methods=['POST'])
-def dummy():
-    session.clear()
-    return jsonify({"message": "Logged out successfully!"})
+# @app.route('/dummy', methods=['POST'])
+# def dummy():
+#     session.clear()
+#     return jsonify({"message": "Logged out successfully!"})
 
 if _name_ == '_main_':
     app.run(debug=True, port=5002)
